@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="card mx-auto mt-4" style="width: 18rem;">
+            <div class="card-body">
+                <h1 class="card-title">Novo Usuário</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ user_form.username.errors }}
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Usuário</span>
+                            </div>
+                            {{ user_form.username }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ user_form.password1.errors }}
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Senha</span>
+                            </div>
+                            {{ user_form.password1 }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ user_form.password2.errors }}
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Confirmação de Senha</span>
+                            </div>
+                            {{ user_form.password2 }}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

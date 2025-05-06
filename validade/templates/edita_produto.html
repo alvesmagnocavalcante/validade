@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4">Novo Produto</h1>
+        <form class="mt-4" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Código</span>
+                            </div>
+                            {{ form.codigo }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Nome</span>
+                            </div>
+                            {{ form.nome }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Marca</span>
+                            </div>
+                            {{ form.marca }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Descrição</span>
+                            </div>
+                            {{ form.descricao }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Quantidade de Entrada</span>
+                            </div>
+                            {{ form.qtd_entrada }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Quantidade Atual</span>
+                            </div>
+                            {{ form.qtd_atual }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Data de Fabricação</span>
+                            </div>
+                            {{ form.data_fabricacao }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Data de Validade</span>
+                            </div>
+                            {{ form.data_validade }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+        </form>
+    </div>
+{% endblock %}

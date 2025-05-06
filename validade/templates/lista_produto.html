@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4">Lista de Produtos</h1>
+        <form method="GET" action="{% url 'lista_produto' %}" class="mt-4">
+            <p>Busque por marca ou código.</p>
+            <div class="input-group">
+                
+                <input type="text" name="search" class="form-control" placeholder="Buscar">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            {% for produto in produtos %}
+                <div class="col-md-6">
+                    <div class="list-group mt-4">
+                        <li class="list-group-item">
+                            <div class="card {% if produto.vencido %}border-danger bg-danger text-white{% elif produto.dias_restantes_validade <= 15 %}border-warning bg-warning text-white{% else %}border-success bg-success text-white{% endif %}">
+                                <div class="card-body">
+                                    <h5 class="card-title">Produto: {{ produto.nome }}</h5>
+                                    <p class="card-text">Código: {{ produto.codigo }}</p>
+                                    <p class="card-text">Marca: {{ produto.marca }}</p>
+                                    <p class="card-text">Descrição: {{ produto.descricao }}</p>
+                                    <p class="card-text">Quantidade de Entrada: {{ produto.qtd_entrada }}</p>
+                                    <p class="card-text">Quantidade Atual: {{ produto.qtd_atual }}</p>
+                                    <p class="card-text">Data de Fabricação: {{ produto.data_fabricacao }}</p>
+                                    <p class="card-text">Data de Validade: {{ produto.data_validade }}</p>
+                                    {% if produto.vencido %}
+                                        <p class="card-text">Produto Vencido</p>
+                                    {% elif produto.dias_restantes_validade <= 15 %}
+                                        <p class="card-text">Faltam {{ produto.dias_restantes_validade }} dias para vencer</p>
+                                    {% else %}
+                                        <p class="card-text">Produto dentro da validade</p>
+                                    {% endif %}
+                                    <a href="{% url 'edita_produto' pk=produto.pk %}" class="btn btn-primary border border-white">Editar Produto</a>
+                                    <a href="{% url 'remove_produto' pk=produto.pk %}" class="btn btn-danger border border-white">Remover Produto</a>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
